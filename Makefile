@@ -1,5 +1,5 @@
 
-IMAGE_NAME = s2i-java
+IMAGE_NAME = mid/builder-openjdk-18-centos7
 
 build:
 	docker build -t $(IMAGE_NAME) .

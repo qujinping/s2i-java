@@ -1,0 +1,6 @@
+#!/bin/sh
+set -ue
+
+# s2i_save_build_artifacts
+cd /opt/app-root/src
+tar cf - .m2
