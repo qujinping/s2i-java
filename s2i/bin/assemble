@@ -82,6 +82,7 @@ LOCAL_SOURCE_DIR=${HOME}
 
 # Resulting artifact files will be deployed to here
 DEPLOY_DIR=/opt/app-root/libs
+STISCRIPT_DIR=/opt/app-root/scripts
 
 # Copy the source for compilation
 # TODO: Remove. Why do we need to move the source???
@@ -141,6 +142,8 @@ if [ -f "$LOCAL_SOURCE_DIR/pom.xml" ]; then
   # to the $DEPLOY_DIR directory for later deployment
   copy_artifacts "$ARTIFACT_DIR" jar
 
+  copy-stiscripts "$STISCRIPT_DIR"
+
   # optionally clear the local maven repository after the build
   clear_maven_repository
 
@@ -178,6 +181,7 @@ elif [ -f "$LOCAL_SOURCE_DIR/build.gradle" ]; then
   # to the $DEPLOY_DIR directory for later deployment
   copy_artifacts "$ARTIFACT_DIR" jar
 
+  copy-stiscripts "$STISCRIPT_DIR"
 
   # clean up after maven
   gradle clean
@@ -193,6 +197,7 @@ else
   ARTIFACT_DIR=${ARTIFACT_DIR:-.}
 
   copy_artifacts "$ARTIFACT_DIR" jar
+  copy-stiscripts "$STISCRIPT_DIR"
 fi
 
 # As Microservices you should only have 1 fat jar
