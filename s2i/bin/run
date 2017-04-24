@@ -22,7 +22,10 @@ check_error() {
 
 # The full qualified directory where this script is located
 get_script_dir() {
-    echo "/opt/app-root/scripts"
+  # Default is current directory
+  local dir=`dirname "$0"`
+  local full_dir=`cd "${dir}" ; pwd`
+  echo ${full_dir}
 }
 
 # Try hard to find a sane default jar-file
