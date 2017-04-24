@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -eo pipefail
-
 # common shell routines for s2i scripts
 
 # insert settings for HTTP proxy into settings.xml if supplied
