@@ -34,11 +34,23 @@ COPY ./contrib/settings.xml $HOME/.m2/
 
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
+COPY ./contrib/scripts /opt/app-root/scripts/
+
+RUN mv /opt/app-root/scripts/jmx_exporter_config.yml /opt/app-root/etc \
+ && mv /opt/app-root/scripts/agent-bond-opts /opt/app-root/scripts/run-java-options \
+ && chmod 755 /opt/app-root/scripts/* \
+ && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/1.0.2/agent-bond-agent-1.0.2.jar \
+          -o /opt/app-root/libs/agent-bond.jar \
+ && chmod 444 /opt/app-root/libs/agent-bond.jar
+
 # This default user is created in the openshift/base-centos7 image
 USER 1001
 
 # Set the default port for applications built using this image
 EXPOSE 8080
+
+# Agent bond including Jolokia and jmx_exporter
+EXPOSE 8778 9779
 
 # Set the default CMD for the image
 CMD ["usage"]

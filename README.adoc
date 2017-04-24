@@ -16,7 +16,7 @@ This builder/runtime s2i image can be used with SpringBoot, Vert.X, Wildfly Swar
 == RUN ENV Options
 
 * *APP_OPTIONS*: Options to pass to *java -jar app.jar ${APP_OPTIONS}*
-
+Detailed configuration spec doc/runtime.md[here]
 
 == Defaults
 If you do not specify any BUILDER_ARGS, by default the s2i image will use the following:
