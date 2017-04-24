@@ -41,7 +41,8 @@ RUN mv /opt/app-root/scripts/jmx_exporter_config.yml /opt/app-root/etc \
  && chmod 755 /opt/app-root/scripts/* \
  && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/1.0.2/agent-bond-agent-1.0.2.jar \
           -o /opt/app-root/libs/agent-bond.jar \
- && chmod 444 /opt/app-root/libs/agent-bond.jar
+ && chmod 444 /opt/app-root/libs/agent-bond.jar \
+ && chown -R 1001:0 /opt/app-root
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
