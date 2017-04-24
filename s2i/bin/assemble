@@ -200,16 +200,4 @@ else
   copy-stiscripts "$STISCRIPT_DIR"
 fi
 
-# As Microservices you should only have 1 fat jar
-# if compgen -G "/tmp/src/*" >/dev/null; then
-if [ $(ls ${DEPLOY_DIR}/*${APP_SUFFIX}.jar | wc -l) -eq 1 ]; then
-  echo "[INFO] Copying ${DEPLOY_DIR}/*${APP_SUFFIX}.jar into ${DEPLOY_DIR}/app.jar"
-  mv ${DEPLOY_DIR}/*${APP_SUFFIX}.jar ${DEPLOY_DIR}/app.jar
-  [ ! -f ${DEPLOY_DIR}/app.jar ] && echo "Application could not be properly built." && exit 1
-  echo "[INFO] Application jar file is located in ${DEPLOY_DIR}/app.jar"
-else
-  echo "[ERROR] No app.jar file located in ${DEPLOY_DIR}"
-  exit 1
-fi
-
 exit 0
